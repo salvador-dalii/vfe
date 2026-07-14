@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="description" content="RST Ventures for Earth (VFE) — fundusz venture capital, który w latach 2018–2021 inwestował w polskie startupy technologiczne na etapie seed i early growth.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; -webkit-font-smoothing: antialiased; }
+    a { color: #173563; }
+    a:hover { color: #2F5D45; }
+  </style>
+</helmet>
+
+<div style="background:#FFFFFF; color:#0B1E3B; font-family:'Montserrat',-apple-system,BlinkMacSystemFont,sans-serif; line-height:1.55;">
+
+  <header style="position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,255,255,0.86); backdrop-filter:blur(10px); border-bottom:1px solid rgba(11,30,59,0.12);">
+    <div style="max-width:1180px; margin:0 auto; padding:{{ containerPad }}; display:flex; align-items:center; justify-content:space-between; height:{{ headerHeight }};">
+      <a href="#top" style="display:flex; align-items:center;">
+        <img src="assets/logo-vfe.png" alt="RST Ventures for Earth" style="height:{{ logoHeight }}; width:auto; display:block; image-rendering:-webkit-optimize-contrast; filter:contrast(1.1) saturate(1.05);"></img>
+      </a>
+      <nav style="display:{{ navDisplay }};">
+        <ul style="display:flex; gap:30px; align-items:center; margin:0; padding:0; list-style:none; flex-wrap:nowrap;">
+          <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="6">
+            <li><a href="{{ link.href }}" target="{{ link.target }}" rel="{{ link.rel }}" style="font-size:14.5px; font-weight:700; font-family:'Montserrat',monospace; letter-spacing:0.03em; color:#173563; white-space:nowrap;">{{ link.label }}</a></li>
+          </sc-for>
+        </ul>
+      </nav>
+      <div style="display:flex; align-items:center; gap:18px;">
+        <img src="assets/eu-flag-header.png" alt="Unia Europejska" style="height:calc({{ logoHeight }} - 10px); width:auto; display:block; object-fit:contain;"></img>
+        <button onClick="{{ toggleMenu }}" style="display:{{ burgerDisplay }}; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px;" aria-label="Menu">
+          <span style="width:22px; height:2px; background:#0B1E3B; display:block;"></span>
+          <span style="width:22px; height:2px; background:#0B1E3B; display:block;"></span>
+          <span style="width:22px; height:2px; background:#0B1E3B; display:block;"></span>
+        </button>
+      </div>
+    </div>
+    <div style="{{ mobileMenuStyle }}">
+      <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="6">
+        <a href="{{ link.href }}" target="{{ link.target }}" rel="{{ link.rel }}" onClick="{{ closeMenu }}" style="font-size:14px; font-family:'Montserrat',monospace; color:#173563;">{{ link.label }}</a>
+      </sc-for>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section style="position:relative; padding:{{ heroPad }}; overflow:hidden; background:linear-gradient(180deg, #FFFFFF 0%, #F4F5F8 100%);">
+      <svg style="position:absolute; inset:0; opacity:0.55; pointer-events:none; width:100%; height:100%;" viewBox="0 0 1200 700" preserveAspectRatio="none">
+        <path d="M-50,600 C200,520 300,650 550,560 C800,470 900,600 1250,520" fill="none" stroke="#2F5D45" stroke-opacity="0.14" stroke-width="1.4"></path>
+        <path d="M-50,540 C220,460 320,580 560,500 C820,410 920,540 1250,460" fill="none" stroke="#2F5D45" stroke-opacity="0.12" stroke-width="1.4"></path>
+        <path d="M-50,480 C240,400 340,520 570,440 C840,350 940,480 1250,400" fill="none" stroke="#AD8A4F" stroke-opacity="0.16" stroke-width="1.4"></path>
+        <path d="M-50,150 C250,90 350,220 600,150 C850,80 950,200 1250,140" fill="none" stroke="#173563" stroke-opacity="0.10" stroke-width="1.4"></path>
+        <path d="M-50,90 C260,30 360,160 610,90 C860,20 960,140 1250,80" fill="none" stroke="#173563" stroke-opacity="0.08" stroke-width="1.4"></path>
+      </svg>
+      <div style="max-width:1180px; margin:0 auto; padding:{{ containerPad }}; position:relative;">
+        <div style="display:grid; grid-template-columns:{{ heroGridCols }}; gap:40px; align-items:center;">
+          <div style="max-width:760px;">
+            <div style="font-family:'Montserrat',monospace; font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase; color:#2F5D45; display:flex; align-items:center; gap:10px; font-weight:500;">
+              <span style="width:22px; height:1px; background:#2F5D45; display:inline-block;"></span>Fundusz VC RST Ventures for Earth
+            </div>
+            <h1 style="font-size:clamp(38px,6vw,68px); line-height:1.06; margin:22px 0 0; font-weight:700; letter-spacing:-0.01em;">Wspieraliśmy zespoły,<br />które budowały <span style="color:#2F5D45;">realne</span><br />technologie.</h1>
+            <p style="margin-top:26px; font-size:18px; max-width:560px; color:#2C3A54;">VFE inwestował w polskie startupy z obszarów IoT, AI&nbsp;&amp;&nbsp;ML, robotyki i e-commerce — oparte na modelach SaaS oraz marketplace, na etapie seed, startup i early&nbsp;growth.</p>
+            <div style="margin-top:40px; display:flex; gap:16px; flex-wrap:wrap;">
+              <a href="#portfolio" style="display:inline-flex; align-items:center; gap:10px; padding:13px 26px; border-radius:2px; font-family:'Montserrat',monospace; font-size:13px; letter-spacing:0.04em; text-transform:uppercase; border:1px solid #0B1E3B; background:#0B1E3B; color:#FFFFFF;">Poznaj portfolio</a>
+              <a href="#zasi-asi" style="display:inline-flex; align-items:center; gap:10px; padding:13px 26px; border-radius:2px; font-family:'Montserrat',monospace; font-size:13px; letter-spacing:0.04em; text-transform:uppercase; border:1px solid #0B1E3B; background:transparent; color:#0B1E3B;">Dane ZASI / ASI</a>
+            </div>
+          </div>
+          <div style="position:relative; order:{{ heroImgOrder }};">
+            <img src="assets/hero-illustration-transparent.png" alt="Ilustracja: zrównoważony rozwój i technologie dla klimatu" style="width:{{ heroImgWidth }}; max-width:none; height:auto; display:block; margin:{{ heroImgMargin }}; filter:drop-shadow(0 24px 40px rgba(11,30,59,0.18));"></img>
+          </div>
+        </div>
+        <div style="margin-top:{{ heroStatsTop }}; display:grid; grid-template-columns:{{ heroStatsCols }}; gap:0; border-top:1px solid rgba(11,30,59,0.12);">
+          <sc-for list="{{ heroStats }}" as="stat" hint-placeholder-count="4">
+            <div style="padding:22px 20px 0; border-left:1px solid rgba(11,30,59,0.12);">
+              <div style="font-family:'Montserrat',monospace; font-size:26px; color:#173563;">{{ stat.num }}</div>
+              <div style="font-family:'Montserrat',monospace; font-size:11.5px; text-transform:uppercase; letter-spacing:0.06em; color:#5A6478; margin-top:6px;">{{ stat.label }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- KNOW-HOW -->
+    <section id="o-funduszu" style="padding:{{ sectionPad }}; border-top:1px solid rgba(11,30,59,0.12);">
+      <div style="max-width:1180px; margin:0 auto; padding:{{ containerPad }};">
+        <div style="max-width:none; margin-bottom:56px;">
+          <div style="font-family:'Montserrat',monospace; font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase; color:#2F5D45; display:flex; align-items:center; gap:10px; font-weight:500;">
+            <span style="width:22px; height:1px; background:#2F5D45; display:inline-block;"></span>Know-how
+          </div>
+          <h2 style="font-size:clamp(28px,4vw,42px); line-height:1.15; margin-top:14px; font-weight:700;">Jak inwestowaliśmy?</h2>
+          <p style="margin-top:16px; color:#3B4A63; font-size:16.5px; white-space:{{ introWhiteSpace }};">Fundusz VFE prowadził działalność inwestycyjną w oparciu o jasno zdefiniowaną politykę — obszar, etap rozwoju i wielkość zaangażowania kapitałowego.</p>
+        </div>
+        <div style="display:grid; grid-template-columns:{{ knowHowCols }}; gap:1px; background:rgba(11,30,59,0.12); border:1px solid rgba(11,30,59,0.12);">
+          <sc-for list="{{ knowHowCards }}" as="card" hint-placeholder-count="3">
+            <div style="background:#FFFFFF; padding:38px 34px; min-height:260px; display:flex; flex-direction:column;">
+              <sc-if value="{{ card.icon }}" hint-placeholder-val="{{ true }}">
+                <img src="{{ card.icon }}" alt="" style="width:48px; height:48px; object-fit:contain;"></img>
+              </sc-if>
+              <div style="font-family:'Montserrat',monospace; font-size:12px; color:#AD8A4F; letter-spacing:0.08em; margin-top:16px;">{{ card.tag }}</div>
+              <h3 style="font-size:22px; margin-top:14px; font-weight:700;">{{ card.title }}</h3>
+              <p style="margin-top:14px; color:#3B4A63; font-size:15px;">{{ card.body }}</p>
+              <div style="margin-top:auto; padding-top:20px; display:flex; flex-wrap:wrap; gap:8px;">
+                <sc-for list="{{ card.pills }}" as="pill" hint-placeholder-count="3">
+                  <span style="font-family:'Montserrat',monospace; font-size:11.5px; padding:5px 10px; border:1px solid rgba(11,30,59,0.12); border-radius:20px; color:#173563;">{{ pill }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- COOPERATION -->
+    <section id="wspolpraca" style="padding:{{ sectionPad }}; border-top:1px solid rgba(11,30,59,0.12);">
+      <div style="max-width:1180px; margin:0 auto; padding:{{ containerPad }};">
+        <div style="max-width:none; margin-bottom:56px;">
+          <div style="font-family:'Montserrat',monospace; font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase; color:#2F5D45; display:flex; align-items:center; gap:10px; font-weight:500;">
+            <span style="width:22px; height:1px; background:#2F5D45; display:inline-block;"></span>Współpraca
+          </div>
+          <h2 style="font-size:clamp(28px,4vw,42px); line-height:1.15; margin-top:14px; font-weight:700; white-space:{{ introWhiteSpace }};">Jak możemy współpracować?</h2>
+        </div>
+        <div style="display:grid; grid-template-columns:{{ coopCols }}; gap:24px;">
+          <sc-for list="{{ coopCards }}" as="card" hint-placeholder-count="2">
+            <div style="background:#FFFFFF; border:1px solid rgba(11,30,59,0.12); padding:40px; display:flex; flex-direction:column; gap:18px; box-shadow:0 20px 50px -25px rgba(11,30,59,0.16);">
+              <img src="{{ card.icon }}" alt="" style="width:48px; height:48px; object-fit:contain;"></img>
+              <div style="font-family:'Montserrat',monospace; font-size:12px; color:#AD8A4F; letter-spacing:0.08em;">{{ card.tag }}</div>
+              <h3 style="font-size:24px; font-weight:700;">{{ card.title }}</h3>
+              <p style="color:#3B4A63; font-size:15.5px;">{{ card.body }}</p>
+              <a href="{{ card.href }}" target="_blank" rel="noopener" style="align-self:flex-start; display:inline-flex; align-items:center; gap:10px; padding:13px 26px; border-radius:2px; font-family:'Montserrat',monospace; font-size:13px; letter-spacing:0.04em; text-transform:uppercase; border:1px solid #0B1E3B; background:{{ card.btnBg }}; color:{{ card.btnColor }};">{{ card.cta }}</a>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" style="padding:{{ sectionPad }}; border-top:1px solid rgba(11,30,59,0.12);">
+      <div style="max-width:1180px; margin:0 auto; padding:{{ containerPad }};">
+        <div style="max-width:none; margin-bottom:56px;">
+          <div style="font-family:'Montserrat',monospace; font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase; color:#2F5D45; display:flex; align-items:center; gap:10px; font-weight:500;">
+            <span style="width:22px; height:1px; background:#2F5D45; display:inline-block;"></span>Portfolio
+          </div>
+          <h2 style="font-size:clamp(28px,4vw,42px); line-height:1.15; margin-top:14px; font-weight:700;">Spółki portfelowe</h2>
+          <p style="margin-top:16px; color:#3B4A63; font-size:16.5px; white-space:{{ introWhiteSpace }};">11 spółek, w które zainwestował fundusz VFE, w podziale na model biznesowy i obszar działania.</p>
+        </div>
+        <div style="display:grid; grid-template-columns:{{ portfolioCols }}; gap:1px; background:rgba(11,30,59,0.12); border:1px solid rgba(11,30,59,0.12);">
+          <sc-for list="{{ portfolio }}" as="co" hint-placeholder-count="11">
+            <div style="background:#FFFFFF; padding:28px 26px; min-height:150px; display:flex; flex-direction:column; justify-content:space-between;">
+              <img src="{{ co.logo }}" alt="{{ co.name }}" style="max-height:66px; width:auto; max-width:100%; object-fit:contain;"></img>
+              <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:14px;">
+                <sc-for list="{{ co.tags }}" as="tag" hint-placeholder-count="2">
+                  <span style="font-family:'Montserrat',monospace; font-size:11.5px; padding:5px 10px; border:1px solid rgba(11,30,59,0.12); border-radius:20px; color:#173563;">{{ tag }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+          <div style="background:#173563; color:#FFFFFF; grid-column:{{ portfolioBannerSpan }}; padding:28px 34px; font-family:'Montserrat',monospace; font-size:14px; display:flex; align-items:center; justify-content:center; text-align:center;">…maybe your logo will be next here?</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team" style="padding:{{ sectionPad }}; border-top:1px solid rgba(11,30,59,0.12);">
+      <div style="max-width:1180px; margin:0 auto; padding:{{ containerPad }};">
+        <div style="max-width:640px; margin-bottom:56px;">
+          <div style="font-family:'Montserrat',monospace; font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase; color:#2F5D45; display:flex; align-items:center; gap:10px; font-weight:500;">
+            <span style="width:22px; height:1px; background:#2F5D45; display:inline-block;"></span>Zespół
+          </div>
+          <h2 style="font-size:clamp(28px,4vw,42px); line-height:1.15; margin-top:14px; font-weight:700;">Team</h2>
+        </div>
+        <div style="display:grid; grid-template-columns:{{ teamCols }}; gap:24px;">
+          <sc-for list="{{ team }}" as="person" hint-placeholder-count="2">
+            <div style="background:#FFFFFF; border:1px solid rgba(11,30,59,0.12); padding:34px; box-shadow:0 20px 50px -25px rgba(11,30,59,0.16);">
+              <img src="{{ person.photo }}" alt="{{ person.name }}" style="width:96px; height:96px; border-radius:50%; object-fit:cover; display:block;"></img>
+              <h3 style="margin-top:20px; font-size:21px; font-weight:700;">{{ person.name }}</h3>
+              <div style="font-family:'Montserrat',monospace; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:#2F5D45; margin-top:6px;">{{ person.role }}</div>
+              <div style="display:flex; gap:18px; margin-top:22px; padding-top:18px; border-top:1px solid rgba(11,30,59,0.12);">
+                <a href="mailto:{{ person.email }}" style="font-family:'Montserrat',monospace; font-size:12.5px;">Mail</a>
+                <a href="{{ person.twitter }}" target="_blank" rel="noopener" style="font-family:'Montserrat',monospace; font-size:12.5px;">Twitter</a>
+                <a href="{{ person.linkedin }}" target="_blank" rel="noopener" style="font-family:'Montserrat',monospace; font-size:12.5px;">LinkedIn</a>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- ZASI / ASI -->
+    <section id="zasi-asi" style="padding:{{ sectionPad }}; border-top:1px solid rgba(11,30,59,0.12);">
+      <div style="max-width:1180px; margin:0 auto; padding:{{ containerPad }};">
+        <div style="max-width:640px; margin-bottom:56px;">
+          <div style="font-family:'Montserrat',monospace; font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase; color:#2F5D45; display:flex; align-items:center; gap:10px; font-weight:500;">
+            <span style="width:22px; height:1px; background:#2F5D45; display:inline-block;"></span>Dane rejestrowe
+          </div>
+          <h2 style="font-size:clamp(28px,4vw,42px); line-height:1.15; margin-top:14px; font-weight:700;">Dane ZASI oraz ASI</h2>
+        </div>
+        <div style="display:grid; grid-template-columns:{{ ledgersCols }}; gap:24px;">
+          <sc-for list="{{ ledgers }}" as="ledger" hint-placeholder-count="2">
+            <div style="background:#FFFFFF; border:1px solid rgba(11,30,59,0.12);">
+              <div style="padding:22px 28px; background:#0B1E3B; color:#FFFFFF; font-family:'Montserrat',monospace; font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase;">{{ ledger.title }}</div>
+              <sc-for list="{{ ledger.rows }}" as="row" hint-placeholder-count="6">
+                <div style="display:flex; justify-content:space-between; gap:16px; padding:16px 28px; border-top:1px solid rgba(11,30,59,0.12); font-size:14.5px;">
+                  <span style="color:#5A6478; font-family:'Montserrat',monospace; font-size:12.5px; padding-top:2px;">{{ row.k }}</span>
+                  <span style="text-align:right; max-width:62%;">{{ row.v }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </sc-for>
+        </div>
+
+        <p style="margin-top:34px; font-size:14.5px; color:#3B4A63; max-width:none; white-space:normal;">
+          ZASI wykonuje działalność na podstawie przepisów ustawy z dnia 27 maja 2004 r. o funduszach inwestycyjnych i zarządzaniu alternatywnymi funduszami inwestycyjnymi (Dz.U. z 2018 r., poz. 1355) oraz została wpisana pod pozycją nr PLZASI00065 w rejestrze zarządzających ASI KNF. Zasady sprawowania przez Komisję Nadzoru Finansowego nadzoru nad tego rodzaju podmiotami dostępne są na stronie KNF.
+        </p>
+
+        <div style="margin-top:34px; display:flex; flex-wrap:wrap; gap:14px;">
+          <sc-for list="{{ legalLinks }}" as="link" hint-placeholder-count="6">
+            <a href="{{ link.href }}" target="{{ link.target }}" rel="{{ link.rel }}" style="font-family:'Montserrat',monospace; font-size:12.5px; padding:10px 16px; border:1px solid rgba(11,30,59,0.12); display:inline-flex; align-items:center; gap:8px;">↗ {{ link.label }}</a>
+          </sc-for>
+        </div>
+
+        <div style="margin-top:34px; padding:22px 26px; border-left:3px solid #AD8A4F; background:#F4F5F8; font-size:14px; color:#3B4A63;">
+          Inwestycje w ramach tego produktu finansowego nie uwzględniają unijnych kryteriów dotyczących zrównoważonej środowiskowo działalności gospodarczej.
+        </div>
+      </div>
+    </section>
+
+    <!-- SFDR -->
+    <section id="sfdr" style="padding:{{ sectionPad }}; border-top:1px solid rgba(11,30,59,0.12);">
+      <div style="max-width:1180px; margin:0 auto; padding:{{ containerPad }};">
+        <div style="max-width:none; margin-bottom:56px;">
+          <div style="font-family:'Montserrat',monospace; font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase; color:#2F5D45; display:flex; align-items:center; gap:10px; font-weight:500;">
+            <span style="width:22px; height:1px; background:#2F5D45; display:inline-block;"></span>SFDR
+          </div>
+          <h2 style="font-size:clamp(28px,4vw,42px); line-height:1.15; margin-top:14px; font-weight:700;">Ujawnienia zrównoważonego rozwoju</h2>
+          <p style="margin-top:16px; color:#3B4A63; font-size:16.5px; white-space:{{ introWhiteSpace }};">Informacje wymagane na podstawie Rozporządzenia SFDR, Rozporządzenia RTS oraz Taksonomii UE.</p>
+        </div>
+
+        <sc-for list="{{ accordionItems }}" as="item" hint-placeholder-count="3">
+          <div style="border:1px solid rgba(11,30,59,0.12); background:#FFFFFF; margin-bottom:14px;">
+            <button onClick="{{ item.toggle }}" style="width:100%; text-align:left; background:none; border:none; cursor:pointer; padding:26px 30px; display:flex; justify-content:space-between; align-items:center; gap:20px; font-family:'Montserrat',sans-serif; font-size:18px; color:#0B1E3B;">
+              {{ item.title }}
+              <span style="font-family:'Montserrat',monospace; font-size:20px; color:#2F5D45; flex-shrink:0; transform:{{ item.plusTransform }}; transition:transform .3s;">+</span>
+            </button>
+            <div style="max-height:{{ item.maxHeight }}; overflow:hidden; transition:max-height .4s ease;">
+              <div style="padding:0 30px 30px; font-size:14.5px; color:#374862;" dangerouslySetInnerHTML="{{ item.bodyHtml }}"></div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- EU PROJECT -->
+    <section id="ue" style="padding:{{ sectionPad }}; border-top:1px solid rgba(11,30,59,0.12);">
+      <div style="max-width:1180px; margin:0 auto; padding:{{ containerPad }};">
+        <div style="max-width:640px; margin-bottom:56px;">
+          <div style="font-family:'Montserrat',monospace; font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase; color:#2F5D45; display:flex; align-items:center; gap:10px; font-weight:500;">
+            <span style="width:22px; height:1px; background:#2F5D45; display:inline-block;"></span>Finansowanie
+          </div>
+          <h2 style="font-size:clamp(28px,4vw,42px); line-height:1.15; margin-top:14px; font-weight:700;">Projekt UE</h2>
+        </div>
+        <div style="background:#173563; color:#FFFFFF; padding:{{ euPad }}; display:grid; grid-template-columns:{{ euGridCols }}; gap:40px;">
+          <div>
+            <img src="assets/eu-flag.png" alt="Unia Europejska" style="height:64px; width:auto; display:block; margin-bottom:22px; background:#FFFFFF; padding:8px 14px; border-radius:2px;"></img>
+            <h3 style="color:#FFFFFF; font-size:24px; font-weight:700;">Program Operacyjny Inteligentny Rozwój 2014–2020</h3>
+            <p style="color:#D7DEE9; margin-top:14px; font-size:15px;">RST Ventures For Earth sp. z o.o. ASI SKA realizuje projekt współfinansowany przez Europejski Fundusz Rozwoju Regionalnego w ramach Działania 3.1 „Finansowanie innowacyjnej działalności MŚP z wykorzystaniem kapitału podwyższonego ryzyka”, Poddziałanie 3.1.1 „Inwestycje w innowacyjne start-upy — Starter” („Program Starter”). Fundusz został stworzony we współpracy z PFR Ventures.</p>
+            <p style="color:#D7DEE9; margin-top:14px; font-size:15px;"><strong>Cel projektu:</strong> wspieranie przedsiębiorstw znajdujących się na wczesnych etapach rozwoju.<br /><strong>Planowany rezultat:</strong> dostarczenie finansowania do 11 projektów na wczesnym etapie rozwoju.</p>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:18px; justify-content:center;">
+            <div style="border-left:2px solid #AD8A4F; padding-left:18px;">
+              <div style="font-family:'Montserrat',monospace; font-size:26px;">39 900 000 PLN</div>
+              <div style="font-family:'Montserrat',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:#9FB0C7; margin-top:4px;">Całkowita wartość projektu</div>
+            </div>
+            <div style="border-left:2px solid #AD8A4F; padding-left:18px;">
+              <div style="font-family:'Montserrat',monospace; font-size:26px;">30 590 000 PLN</div>
+              <div style="font-family:'Montserrat',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:#9FB0C7; margin-top:4px;">Wkład UE</div>
+            </div>
+          </div>
+          <div style="grid-column:1 / -1; display:flex; justify-content:center;">
+            <img src="assets/eu-funds-row-cropped.png" alt="Fundusze Europejskie, Rzeczpospolita Polska, Unia Europejska" style="width:100%; max-width:900px; height:auto; display:block; margin-top:16px; background:#FFFFFF; padding:10px 14px; border-radius:2px;"></img>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="kontakt" style="padding:{{ sectionPad }}; border-top:1px solid rgba(11,30,59,0.12);">
+      <div style="max-width:1180px; margin:0 auto; padding:{{ containerPad }};">
+        <div style="max-width:640px; margin-bottom:56px;">
+          <div style="font-family:'Montserrat',monospace; font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase; color:#2F5D45; display:flex; align-items:center; gap:10px; font-weight:500;">
+            <span style="width:22px; height:1px; background:#2F5D45; display:inline-block;"></span>Kontakt
+          </div>
+          <h2 style="font-size:clamp(28px,4vw,42px); line-height:1.15; margin-top:14px; font-weight:700;">Porozmawiajmy</h2>
+          <p style="margin-top:16px; color:#3B4A63; font-size:16.5px; display:flex; align-items:center; gap:8px;">
+            <img src="assets/icon-flag.png" alt="" style="height:16px; width:auto;"></img>
+            For Earth Sp. z o.o. · ul. Januszowicka 5 lok. 219, 53-135 Wrocław, Poland
+          </p>
+        </div>
+        <div style="display:grid; grid-template-columns:{{ contactCols }}; gap:24px;">
+          <sc-for list="{{ team }}" as="person" hint-placeholder-count="2">
+            <div style="background:#FFFFFF; border:1px solid rgba(11,30,59,0.12); padding:40px; display:flex; flex-direction:column; gap:18px; box-shadow:0 20px 50px -25px rgba(11,30,59,0.16);">
+              <div style="font-family:'Montserrat',monospace; font-size:12px; color:#AD8A4F; letter-spacing:0.08em;">{{ person.nameUpper }}</div>
+              <h3 style="font-size:24px; font-weight:700;">{{ person.email }}</h3>
+              <a href="mailto:{{ person.email }}" style="align-self:flex-start; display:inline-flex; align-items:center; gap:10px; padding:13px 26px; border-radius:2px; font-family:'Montserrat',monospace; font-size:13px; letter-spacing:0.04em; text-transform:uppercase; border:1px solid #0B1E3B; background:#0B1E3B; color:#FFFFFF;">
+                <img src="assets/icon-mail.png" alt="" style="height:14px; width:auto; filter:brightness(0) invert(1);"></img>
+                Napisz e-mail
+              </a>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="padding:70px 0 40px; background:#0B1E3B; color:#FFFFFF;">
+    <div style="max-width:1180px; margin:0 auto; padding:{{ containerPad }};">
+      <div style="display:grid; grid-template-columns:{{ footerCols }}; gap:40px; padding-bottom:44px; border-bottom:1px solid rgba(246,242,233,0.14);">
+        <div>
+          <div style="font-weight:700; font-size:19px; letter-spacing:-0.01em; color:#FFFFFF;">RST<span style="color:#AD8A4F;">·</span>VFE</div>
+          <p style="color:#AEB9CC; font-size:14px; margin-top:14px; max-width:320px;">RST Ventures for Earth — fundusz VC zarządzany przez For Earth Sp. z o.o., zarejestrowany zarządzający ASI (KNF: PLZASI00065).</p>
+        </div>
+        <div>
+          <h4 style="color:#FFFFFF; font-family:'Montserrat',monospace; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:18px;">Nawigacja</h4>
+          <ul style="margin:0; padding:0; list-style:none;">
+            <sc-for list="{{ footerNavLinks }}" as="link" hint-placeholder-count="5">
+              <li style="margin-bottom:10px;"><a href="{{ link.href }}" style="color:#C7D0DE; font-size:14px;">{{ link.label }}</a></li>
+            </sc-for>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color:#FFFFFF; font-family:'Montserrat',monospace; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:18px;">Na zewnątrz</h4>
+          <ul style="margin:0; padding:0; list-style:none;">
+            <sc-for list="{{ footerOutLinks }}" as="link" hint-placeholder-count="5">
+              <li style="margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+                <sc-if value="{{ link.icon }}" hint-placeholder-val="{{ true }}">
+                  <img src="{{ link.icon }}" alt="" style="height:16px; width:16px; object-fit:contain; border-radius:3px;"></img>
+                </sc-if>
+                <a href="{{ link.href }}" target="{{ link.target }}" rel="{{ link.rel }}" style="color:#C7D0DE; font-size:14px;">{{ link.label }}</a>
+              </li>
+            </sc-for>
+          </ul>
+        </div>
+      </div>
+      <div style="padding-top:26px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:12.5px; color:#8493AB; font-family:'Montserrat',monospace;">
+        <span>© 2026 VFE — RST Ventures for Earth</span>
+        <span>For Earth Sp. z o.o. · KRS 0000739671 · NIP 8992847599</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    menuOpen: false,
+    openAccordion: 0,
+    vw: typeof window !== 'undefined' ? window.innerWidth : 1280
+  };
+
+  componentDidMount() {
+    this._onResize = () => {
+      clearTimeout(this._resizeT);
+      this._resizeT = setTimeout(() => this.setState({ vw: window.innerWidth }), 100);
+    };
+    window.addEventListener('resize', this._onResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onResize);
+    clearTimeout(this._resizeT);
+  }
+
+  navLinks = [
+    { href: '#top', label: 'Home', target: '', rel: '' },
+    { href: '#o-funduszu', label: 'Know-how', target: '', rel: '' },
+    { href: '#portfolio', label: 'Portfolio', target: '', rel: '' },
+    { href: '#team', label: 'Team', target: '', rel: '' },
+    { href: '#zasi-asi', label: 'ZASI/ASI', target: '', rel: '' },
+    { href: '#sfdr', label: 'SFDR', target: '', rel: '' },
+    { href: '#kontakt', label: 'Kontakt', target: '', rel: '' },
+  ];
+
+  footerNavLinks = [
+    { href: '#o-funduszu', label: 'Know-how' },
+    { href: '#portfolio', label: 'Portfolio' },
+    { href: '#team', label: 'Team' },
+    { href: '#zasi-asi', label: 'ZASI / ASI' },
+    { href: '#sfdr', label: 'SFDR' }
+  ];
+
+  footerOutLinks = [
+    { href: 'https://www.linkedin.com/company/29041004/', label: 'LinkedIn', target: '_blank', rel: 'noopener', icon: 'assets/icon-linkedin.png' },
+    { href: 'https://www.crunchbase.com/organization/rst-ventures-for-earth', label: 'Crunchbase', target: '_blank', rel: 'noopener', icon: 'assets/icon-crunchbase.png' },
+    { href: '#', label: 'Polityka prywatności', target: '', rel: '', icon: '' },
+    { href: '#', label: 'Polityka cookie', target: '', rel: '', icon: '' }
+  ];
+
+  heroStats = [
+    { num: '1–4 mln PLN', label: 'Wielkość ticketu' },
+    { num: '11', label: 'Spółek portfelowych' },
+    { num: '39,9 mln PLN', label: 'Wartość projektu UE' },
+    { num: '2018–2021', label: 'Okres inwestycyjny' }
+  ];
+
+  knowHowCards = [
+    {
+      icon: 'assets/icon-inwestorzy.png',
+      tag: 'CO?',
+      title: 'Obszary inwestycji',
+      body: 'Inwestowaliśmy w projekty z obszaru IoT, AI & ML, robotyki oraz e-commerce, oparte na modelach biznesowych takich jak SaaS czy marketplace.',
+      pills: ['IoT', 'AI & ML', 'Robotyka', 'E-commerce', 'SaaS', 'Marketplace']
+    },
+    {
+      icon: 'assets/icon-startupy.png',
+      tag: 'KIEDY?',
+      title: 'Etap i wielkość ticketu',
+      body: 'Inwestowaliśmy na etapie seed, startup oraz early growth, z ticketem inwestycyjnym w przedziale 1–4 mln PLN na spółkę.',
+      pills: ['Seed', 'Startup', 'Early growth', '1–4 mln PLN']
+    },
+    {
+      icon: 'assets/icon-status.svg',
+      tag: 'STATUS',
+      title: 'Okres inwestycyjny',
+      body: 'Ostatnia z umów inwestycyjnych w ramach pierwszej rundy została podpisana 9 marca 2021 r. Fundusz zakończył okres inwestycyjny i obecnie koncentruje się na zarządzaniu portfelem oraz obowiązkach informacyjnych.',
+      pills: ['Portfolio aktywne', 'Nowe inwestycje wstrzymane']
+    }
+  ];
+
+  coopCards = [
+    {
+      icon: 'assets/icon-inwestorzy-plant.svg',
+      tag: 'INWESTORZY',
+      title: 'Kooperacja i koinwestycje',
+      body: 'Jesteśmy otwarci na kooperację i koinwestycje. Jeśli zainteresował Was który z naszych zespołów portfelowych, zapraszamy do kontaktu.',
+      href: 'https://zc4w7aex9jp.typeform.com/to/Zez82CSY',
+      cta: 'Zapytaj nas o spółkę',
+      btnBg: '#0B1E3B',
+      btnColor: '#FFFFFF'
+    },
+    {
+      icon: 'assets/icon-startupy-rocket.svg',
+      tag: 'STARTUPY',
+      title: 'Zgłoś współpracę',
+      body: 'Aktualnie już nie inwestujemy, ale jeśli widzisz możliwość współpracy — odezwij się do nas.',
+      href: 'https://zc4w7aex9jp.typeform.com/to/HyFze3B0',
+      cta: 'Zapytaj o współpracę',
+      btnBg: 'transparent',
+      btnColor: '#0B1E3B'
+    }
+  ];
+
+  portfolio = [
+    { logo: 'assets/logo-electronsquare.png', name: 'Electron Square', tags: ['B2C', 'IoT', 'Industrial Engineering'] },
+    { logo: 'assets/logo-zeme.png', name: 'ZEME Technologies', tags: ['B2B', 'Waste Management'] },
+    { logo: 'assets/logo-versabox.png', name: 'VersaBox', tags: ['B2B', 'Industrial Automation', 'Electronics'] },
+    { logo: 'assets/logo-zieleniaka.png', name: 'Zieleniaka', tags: ['B2C', 'E-commerce', 'Food Delivery', 'Apps'] },
+    { logo: 'assets/logo-stethome.png', name: 'StethoMe', tags: ['B2B', 'B2C', 'AI', 'Medical Device'] },
+    { logo: 'assets/logo-sellintegro.png', name: 'SellIntegro', tags: ['B2B', 'E-commerce', 'Enterprise Software'] },
+    { logo: 'assets/logo-samurailabs.png', name: 'Samurai Labs', tags: ['B2B', 'AI & ML'] },
+    { logo: 'assets/logo-reactivepad.png', name: 'reactivepad', tags: ['B2B', 'Analytics', 'Enterprise Software'] },
+    { logo: 'assets/logo-prosoma.png', name: 'Prosoma Digital Therapeutics', tags: ['B2B', 'AI', 'Healthcare', 'Mental Health'] },
+    { logo: 'assets/logo-plenti.png', name: 'Plenti', tags: ['B2C', 'E-commerce', 'Renting'] },
+    { logo: 'assets/logo-herimpact.png', name: 'Her Impact', tags: ['B2C', 'B2B', 'HR'] }
+  ];
+
+  team = [
+    {
+      photo: 'assets/photo-bartlomiej.jpg',
+      name: 'Tomasz Popów',
+      nameUpper: 'TOMASZ POPÓW',
+      role: 'General Partner',
+      email: 'tomek@vfe.vc',
+      twitter: 'https://twitter.com/tomekpopow',
+      linkedin: 'https://linkedin.com/in/tomekpopow'
+    },
+    {
+      photo: 'assets/photo-tomasz.jpg',
+      name: 'Bartłomiej Dąbkowski',
+      nameUpper: 'BARTŁOMIEJ DĄBKOWSKI',
+      role: 'General Partner',
+      email: 'bartek@vfe.vc',
+      twitter: 'https://twitter.com/dabkowskiB',
+      linkedin: 'https://linkedin.com/in/bartekdabkowski'
+    }
+  ];
+
+  ledgers = [
+    {
+      title: 'Dane ZASI',
+      rows: [
+        { k: 'Podmiot', v: 'For Earth Sp. z o.o.' },
+        { k: 'Adres', v: 'ul. Januszowicka 5 lok. 219, 53-135 Wrocław, Poland' },
+        { k: 'Sąd rejestrowy', v: 'Sąd Rejonowy dla Wrocławia-Fabrycznej, VI Wydział Gospodarczy' },
+        { k: 'KRS', v: '0000739671' },
+        { k: 'NIP', v: '8992847599' },
+        { k: 'Kapitał zakładowy', v: '245 600 zł' },
+        { k: 'Rejestr ZASI KNF', v: 'Poz. nr PLZASI00065' }
+      ]
+    },
+    {
+      title: 'Dane ASI zarządzanej przez For Earth Sp. z o.o.',
+      rows: [
+        { k: 'Podmiot', v: 'RST Ventures For Earth Sp. z o.o. ASI SKA' },
+        { k: 'Adres', v: 'ul. Januszowicka 5 lok. 219, 53-135 Wrocław, Poland' },
+        { k: 'Sąd rejestrowy', v: 'Sąd Rejonowy dla Wrocławia-Fabrycznej, VI Wydział Gospodarczy' },
+        { k: 'KRS', v: '0000757194' },
+        { k: 'NIP', v: '8992853358' },
+        { k: 'Kapitał zakładowy', v: '3 951 243 zł' }
+      ]
+    }
+  ];
+
+  legalLinks = [
+    { href: 'https://zasi.knf.gov.pl/', label: 'Rejestr zarządzających ASI (KNF)', target: '_blank', rel: 'noopener' },
+    { href: 'https://www.knf.gov.pl/knf/pl/komponenty/img/Stanowisko_UKNF_w_sprawie_nadzoru_Komisji_nad_zarzadzajacymi_ASI_wpisanymi_do_rejestru_ZASI_62655.pdf', label: 'Stanowisko UKNF ws. nadzoru nad ZASI', target: '_blank', rel: 'noopener' },
+    { href: '#', label: 'Statut ASI (PDF)', target: '', rel: '' },
+    { href: '#', label: 'Dla akcjonariuszy', target: '', rel: '' },
+    { href: 'mailto:zgloszenienaruszenia@vfe.vc', label: 'Zgłoś naruszenie (Sygnalista)', target: '', rel: '' },
+    { href: '#', label: 'Informacja dla inwestorów — zmiana ustawy o funduszach inwestycyjnych', target: '', rel: '' }
+  ];
+
+  accordionData = [
+    {
+      title: 'Ujawnianie informacji związanych ze zrównoważonym rozwojem',
+      body: `<p>Podmioty Zarządzające ASI są podmiotami — uczestnikami rynku finansowego, do których stosuje się przepisy:</p>
+        <ul style="margin:14px 0;">
+          <li style="position:relative; padding-left:20px; margin-bottom:8px;">Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2019/2088 z dnia 27 listopada 2019 r. w sprawie ujawniania informacji związanych ze zrównoważonym rozwojem w sektorze usług finansowych (dalej: „Rozporządzenie SFDR”),</li>
+          <li style="position:relative; padding-left:20px; margin-bottom:8px;">Rozporządzenia delegowanego Komisji (UE) 2022/1288 z dnia 6 kwietnia 2022 r. uzupełniającego Rozporządzenie SFDR w zakresie regulacyjnych standardów technicznych (dalej: „Rozporządzenie RTS”),</li>
+          <li style="position:relative; padding-left:20px; margin-bottom:8px;">Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2020/852 z dnia 18 czerwca 2020 r. w sprawie ustanowienia ram ułatwiających zrównoważone inwestycje (dalej: „Taksonomia”),</li>
+          <li style="position:relative; padding-left:20px; margin-bottom:8px;">Rozporządzenia delegowanego Komisji (UE) 2021/2139 z dnia 4 czerwca 2021 r. uzupełniającego Taksonomię technicznymi kryteriami kwalifikacji (dalej: „Rozporządzenie klimatyczne”),</li>
+        </ul>
+        <p>dalej łącznie jako „Regulacje ESG”. Regulacje ESG zapewniają jednolitą ochronę inwestorów oraz ułatwiają im korzystanie z szerokiego zakresu produktów finansowych, ustanawiając jednocześnie przepisy umożliwiające inwestorom końcowym podejmowanie świadomych decyzji inwestycyjnych. Rozporządzenie SFDR ma na celu osiągnięcie większej przejrzystości w odniesieniu do sposobu wprowadzania przez uczestników rynku finansowego i doradców finansowych ryzyk dla zrównoważonego rozwoju do ich decyzji inwestycyjnych.</p>
+        <p>Na gruncie Rozporządzenia SFDR spółka For Earth sp. z o.o. (KRS: 0000739671) (Podmiot Zarządzający) prowadzi działalność jako zewnętrznie zarządzający ASI i komplementariusz RST Ventures For Earth sp. z o.o. ASI SKA (KRS: 0000757194) (Pośrednik Finansowy), która uzyskała charakter alternatywnej spółki inwestycyjnej. Podmiot Zarządzający jako uczestnik rynku finansowego nie zarządza innymi alternatywnymi spółkami inwestycyjnymi.</p>`
+    },
+    {
+      title: 'Przejrzystość strategii dotyczących ryzyka dla zrównoważonego rozwoju',
+      body: `<p>Przepisy Rozporządzenia SFDR zaczęły obowiązywać na terenie Unii Europejskiej 10 marca 2021 r. Ramowa Umowa Inwestycyjna („RUI”) regulująca powstanie i działanie Podmiotu Zarządzającego ASI oraz zarządzanej przez niego ASI została zawarta 30 maja 2018 r.</p>
+        <p>Decyzje inwestycyjne dotyczące wyboru podmiotu inwestowanego, z zastosowaniem kryteriów określonych w polityce inwestycyjnej i zasadach inwestowania, zostały podjęte przed wejściem w życie Rozporządzenia SFDR, tj. przed 10 marca 2021 r. Ostatnia z umów inwestycyjnych w ramach pierwszej rundy inwestycyjnej została podpisana 9 marca 2021 r.</p>
+        <p>Podmiot Zarządzający nie posiada strategii dotyczącej wprowadzania do działalności ryzyk dla zrównoważonego rozwoju w procesie podejmowania decyzji inwestycyjnych, z uwagi na brak obowiązywania przepisów Rozporządzenia SFDR w trakcie podejmowania decyzji inwestycyjnych. Ponadto Podmiot Zarządzający ASI nie dokonywał „zrównoważonych inwestycji” w rozumieniu Rozporządzenia SFDR. Inwestycje Podmiotu Zarządzającego ASI były ukierunkowane na:</p>
+        <ul style="margin:14px 0;">
+          <li style="position:relative; padding-left:20px; margin-bottom:8px;">tworzenie nowych Przedsiębiorstw Kwalifikowalnych, lub</li>
+          <li style="position:relative; padding-left:20px; margin-bottom:8px;">dostarczenie kapitału początkowego, tj. kapitału zalążkowego i na rozruch (seed, start-up capital), lub</li>
+          <li style="position:relative; padding-left:20px; margin-bottom:8px;">dostarczenie kapitału na realizację nowych projektów, lub</li>
+          <li style="position:relative; padding-left:20px; margin-bottom:8px;">wprowadzanie projektów i rozwiązań na nowe rynki (z zastrzeżeniem jednoczesnego rozwoju działalności na terenie Rzeczpospolitej Polskiej).</li>
+        </ul>
+        <p>Kryteriami wyboru przedsiębiorstw kwalifikowalnych były w szczególności: jakość zespołu zarządzającego lub zgłaszającego innowacyjną ideę, gotowość do współinwestowania w projekt przez pomysłodawców, innowacyjność zaproponowanej idei lub prowadzonej działalności, zdolność do prowadzenia działalności na rynkach globalnych oraz możliwość uzyskania znacznej dynamiki wzrostu i sukcesu komercyjnego. Przed podjęciem decyzji inwestycyjnej Podmiot Zarządzający przeprowadzał badanie due diligence obejmujące m.in. ład korporacyjny, sprawy pracownicze oraz prawa autorskie do dofinansowanych projektów.</p>`
+    },
+    {
+      title: 'Oświadczenie Zarządzającego ASI (Rozporządzenie SFDR i RTS)',
+      body: `<p>Podmiot Zarządzający ASI oświadcza, że przy podejmowaniu decyzji inwestycyjnych związanych z nabywaniem instrumentów udziałowych danego podmiotu przez zarządzaną ASI nie brał pod uwagę ich niekorzystnych skutków dla czynników zrównoważonego rozwoju w rozumieniu Rozporządzenia SFDR. Wynika to z kryteriów wyboru określonych w zasadach inwestycyjnych i polityce inwestycyjnej. Kryteriami wyboru przedsiębiorstw kwalifikowalnych przez Zarządzającego ASI były w szczególności:</p>
+        <ul style="margin:14px 0;">
+          <li style="position:relative; padding-left:20px; margin-bottom:8px;">jakość zespołu zarządzającego przedsiębiorstwem kwalifikowalnym lub zgłaszającego innowacyjną ideę,</li>
+          <li style="position:relative; padding-left:20px; margin-bottom:8px;">gotowość do współinwestowania w projekt przez pomysłodawców,</li>
+          <li style="position:relative; padding-left:20px; margin-bottom:8px;">innowacyjność zaproponowanej idei lub prowadzonej działalności,</li>
+          <li style="position:relative; padding-left:20px; margin-bottom:8px;">zdolność do prowadzenia działalności na rynkach globalnych,</li>
+          <li style="position:relative; padding-left:20px; margin-bottom:8px;">możliwość uzyskania znacznej dynamiki wzrostu i sukcesu komercyjnego,</li>
+        </ul>
+        <p>co miało zostać opisane przez Podmiot Zarządzający ASI w rekomendacji inwestycyjnej dotyczącej danej Inwestycji.</p>
+        <p>Podmiot Zarządzający ASI oświadcza, że nie zamierza w przyszłości brać pod uwagę niekorzystnych skutków dla czynników zrównoważonego rozwoju w rozumieniu Rozporządzenia SFDR, poprzez odniesienie do wskaźników wymienionych w załączniku I tabela 1 Rozporządzenia RTS. Oświadczenie w tym brzmieniu Podmiot Zarządzający ASI składa z uwagi na zakończenie okresu inwestycyjnego.</p>`
+    }
+  ];
+
+  toggleAccordion(i) {
+    this.setState(s => ({ openAccordion: s.openAccordion === i ? -1 : i }));
+  }
+
+  renderVals() {
+    const menuOpen = this.state.menuOpen;
+    const vw = this.state.vw;
+    const isMobile = vw < 640;
+    const isTablet = vw >= 640 && vw < 1024;
+    const isDesktop = vw >= 1024;
+    const isCompact = !isDesktop; // tablet or mobile → collapsed nav
+
+    const headerHeight = isMobile ? 76 : isTablet ? 90 : 104;
+    const logoHeight = isMobile ? 50 : isTablet ? 66 : 88;
+    const containerPad = isMobile ? 20 : isTablet ? 26 : 32;
+    const sectionPad = isMobile ? '56px 0' : isTablet ? '80px 0' : '112px 0';
+
+    return {
+      navDisplay: isDesktop ? 'flex' : 'none',
+      burgerDisplay: isDesktop ? 'none' : 'flex',
+      headerHeight: headerHeight + 'px',
+      logoHeight: logoHeight + 'px',
+      containerPad: '0 ' + containerPad + 'px',
+      sectionPad,
+      mobileMenuStyle: {
+        display: menuOpen ? 'flex' : 'none',
+        flexDirection: 'column',
+        position: 'fixed',
+        top: headerHeight + 'px',
+        left: 0,
+        right: 0,
+        background: '#FFFFFF',
+        padding: '24px ' + containerPad + 'px',
+        gap: '18px',
+        borderBottom: '1px solid rgba(11,30,59,0.12)',
+        zIndex: 99
+      },
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      navLinks: this.navLinks,
+      footerNavLinks: this.footerNavLinks,
+      footerOutLinks: this.footerOutLinks,
+      heroStats: this.heroStats,
+      knowHowCards: this.knowHowCards,
+      coopCards: this.coopCards,
+      portfolio: this.portfolio,
+      team: this.team,
+      ledgers: this.ledgers,
+      legalLinks: this.legalLinks,
+      accordionItems: this.accordionData.map((item, i) => ({
+        title: item.title,
+        toggle: () => this.toggleAccordion(i),
+        maxHeight: this.state.openAccordion === i ? '2000px' : '0px',
+        plusTransform: this.state.openAccordion === i ? 'rotate(45deg)' : 'rotate(0deg)',
+        bodyHtml: { __html: item.body }
+      })),
+
+      heroPad: isMobile ? '140px 0 64px' : isTablet ? '160px 0 80px' : '190px 0 110px',
+      heroGridCols: isDesktop ? '1.15fr 0.85fr' : '1fr',
+      heroImgOrder: isDesktop ? 0 : -1,
+      heroImgWidth: isDesktop ? '150%' : isTablet ? '78%' : '92%',
+      heroImgMargin: isDesktop ? '0' : '0 auto 32px',
+      heroStatsCols: isMobile ? 'repeat(2,1fr)' : 'repeat(4,1fr)',
+      heroStatsTop: isMobile ? '48px' : '88px',
+
+      knowHowCols: isDesktop ? 'repeat(3,1fr)' : isTablet ? 'repeat(2,1fr)' : '1fr',
+      coopCols: isMobile ? '1fr' : '1fr 1fr',
+      portfolioCols: isDesktop ? 'repeat(4,1fr)' : isTablet ? 'repeat(2,1fr)' : '1fr',
+      portfolioBannerSpan: isDesktop ? 'span 4' : isTablet ? 'span 2' : 'span 1',
+      teamCols: isMobile ? '1fr' : '1fr 1fr',
+      ledgersCols: isMobile ? '1fr' : '1fr 1fr',
+      euGridCols: isMobile ? '1fr' : '1.3fr 1fr',
+      euPad: isMobile ? '32px 24px' : isTablet ? '44px' : '56px',
+      contactCols: isMobile ? '1fr' : '1fr 1fr',
+      footerCols: isMobile ? '1fr' : isTablet ? '1fr 1fr' : '1.4fr 1fr 1fr',
+      introWhiteSpace: isDesktop ? 'nowrap' : 'normal'
+    };
+  }
+}
+</script>
+</body>
+</html>
